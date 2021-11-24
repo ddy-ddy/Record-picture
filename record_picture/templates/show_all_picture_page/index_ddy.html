@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试：浏览照片页面</title>
+
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../../static/all_picture_page/css/animate.min.css">  <!--rel：当前文档与被链接文档之间的关系-->
+    <link rel="stylesheet" href="../../static/all_picture_page/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/magnific.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/nice-select.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/owl.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/slick-slide.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/style.css">
+    <link rel="stylesheet" href="../../static/all_picture_page/css/responsive.css">
+
+    <!--Google Fonts-->
+    <link href="../../static/all_picture_page/css/css2.css" rel="stylesheet">
+</head>
+
+<body>
+<!--    组件1：预加载波浪效果，css在style.css的preloader css中-->
+<div class="preloader" id="preloader">
+    <!--自定义的preloader-inner（用于实现波浪效果）-->
+    <div class="preloader-inner">
+        <div id="wave1"></div> <!--wave1,css实现在style.css文件中-->
+        <div class="spinner">  <!--微调控制器-->
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--组件2：结束波浪效果，body-overlay加载body-->
+<div class="body-overlay" id="body-overlay"></div>
+
+<!--组件3：search popup area（搜索框）-->
+<div class="search-popup" id="search-popup">
+    <form action="home-2.html" class="search-form">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search.....">
+        </div>
+        <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
+    </form>
+</div>
+
+<!--组件4：navbar导航栏-->
+<!--设置页面左边的navbar-->
+<div id="side-navbar" class="side-navbar">
+    <i id="side-menu-close" class="fa fa-times"></i>
+    <ul class="side-navbar-items">
+        <li class="menu-item-has-children">Home
+            <ul class="sub-menu ps-0">
+                <li><a href="">Home 01</a></li>
+                <li><a href="home-2.html">Home 02</a></li>
+                <li><a href="home-3.html">Home 03</a></li>
+                <li><a href="home-4.html">Home 04</a></li>
+            </ul>
+        </li>
+        <li><a href="home-4.html">Features</a></li>
+        <li class="menu-item-has-children">Pages
+            <ul class="sub-menu ps-0">
+                <li><a href="single.html">Blog</a></li>
+                <li><a href="single-blog-2.html">Blog 02</a></li>
+                <li><a href="single-blog-3.html">Blog 03</a></li>
+                <li><a href="single-blog-4.html">Blog 04</a></li>
+                <li><a href="single-blog-full.html">Blog 05</a></li>
+                <li><a href="gallery-blog.html">Gallery Blog</a></li>
+            </ul>
+        </li>
+        <li><a href="home-3.html">Lifestyle</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div>
+<!--设置页面顶部的navbar-->
+<header class="navbar-area">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid nav-container">
+            <!--响应移动的菜单-->
+            <div class="responsive-mobile-menu">
+                <button class="menu toggle-btn d-block d-lg-none" data-target="#themefie_main_menu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-left"></span>
+                    <span class="icon-right"></span>
+                </button>
+            </div>
+            <!--设置导航栏的左边-->
+            <div class="lawel-header-left">
+                <div class="side-menu-bar d-inline-flex">
+                    <i id="side-menu-open" class="fa fa-bars"></i>
+                </div>
+            </div>
+            <!--设置导航栏的中间部分-->
+            <div class="collapse navbar-collapse" id="themefie_main_menu">
+                <ul class="navbar-nav menu-open text-center">
+                    <li>
+                        <a href="">首页</a>
+                    </li>
+                    <li>
+                        <a href="home-4.html">个人中心</a>
+                    </li>
+                    <li>
+                        <a href="home-3.html">教程</a>
+                    </li>
+                    <li>
+                        <a href="home-3.html">关于我们</a>
+                    </li>
+                </ul>
+            </div>
+            <!--设置导航栏的右边部分-->
+            <div class="nav-right-part text-end nav-right-part-desktop">
+                <ul>
+                    <li><a href="#"><i class="fab fa-qq"></i></a></li>
+                    <li><a href="#"><i class="fab fa-weibo"></i></a></li>
+                    <li><a href="#"><i class="fab fa-weixin"></i></a></li>
+                    <li><a class="search" href="#"><i class="fa fa-search"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--
+    组件5：logo图像
+    <div class = "banner-logo-area">
+        <img src = "static/picture/logo.png" alt = "img">
+    </div>
+-->
+
+<!--
+    组件6：logo图像下面的横幅
+    <section class = "banner-area">
+        <div class = "banner-slider owl-carousel">
+            <div class = "item" style = "background: url(static/image/slider-1.jpg)">
+                <div class = "banner-inner">
+                    <h4>Fashion</h4>
+                    <h2>Dining Room Reveal</h2>
+                    <a href = "single.html" class = "btn readmore-button">Read more</a>
+
+                </div>
+            </div>
+            <div class = "item" style = "background: url(static/image/slider-2.jpg)">
+                <div class = "banner-inner">
+                    <h4>Fashion</h4>
+                    <h2>Dining Room Reveal</h2>
+                    <a href = "single.html" class = "btn readmore-button">Read more</a>
+
+                </div>
+            </div>
+            <div class = "item" style = "background: url(static/image/slider-3.jpg)">
+                <div class = "banner-inner">
+                    <h4>Fashion</h4>
+                    <h2>Dining Room Reveal</h2>
+                    <a href = "single.html" class = "btn readmore-button">Read more</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+
+
+<!--组件7：图片区域-->
+<div class="featured-area pd-top-115">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--图片区域顶部-->
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h6 class="title">🇨🇳中国-江西-南昌</h6>
+                    <a href="home-4.html">点击此处使用格式二查看图片</a>
+                </div>
+            </div>
+            <!--第一张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-90">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/1.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">林总的鞋</a></h2>
+                        <ul>
+                            <li><a href="#">南康</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第二张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/2.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">红色的窗户</a></h2>
+                        <ul>
+                            <li><a href="#">衡阳</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第三张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/3.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">13栋宿舍楼</a></h2>
+                        <ul>
+                            <li><a href="#">南昌</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第四张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/4.png" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">仙女</a></h2>
+                        <ul>
+                            <li><a href="#">南昌</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第五张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/5.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">瑶湖里夜市</a></h2>
+                        <ul>
+                            <li><a href="#">南昌</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第六张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/6.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">黄昏时的宿舍</a></h2>
+                        <ul>
+                            <li><a href="#">南昌</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第七张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/7.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">Robin</a></h2>
+                        <ul>
+                            <li><a href="#">南康</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--第八张浮窗图片-->
+            <div class="col-lg-3 col-md-6">
+                <div class="featured-item pd-bottom-30">
+                    <div class="thumb">
+                        <img src="../../static/all_picture_page/ddy-pictures/9.JPG" alt="img">
+                    </div>
+                    <div class="featured-item-meta">
+                        <h2><a href="single-blog-3.html">带翅膀的仙女</a></h2>
+                        <ul>
+                            <li><a href="#">南昌</a></li>
+                            <li><a href="#">📷富士XS-10</a></li>
+                            <li>May 8,2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- all plugins here -->
+<script src="../../static/all_picture_page/js/jquery.3.6.min.js"></script>
+<script src="../../static/all_picture_page/js/bootstrap.min.js"></script>
+<script src="../../static/all_picture_page/js/imageloded.min.js"></script>
+<script src="../../static/all_picture_page/js/counterup.js"></script>
+<script src="../../static/all_picture_page/js/waypoint.js"></script>
+<script src="../../static/all_picture_page/js/magnific.min.js"></script>
+<script src="../../static/all_picture_page/js/isotope.pkgd.min.js"></script>
+<script src="../../static/all_picture_page/js/nice-select.min.js"></script>
+<script src="../../static/all_picture_page/js/fontawesome.min.js"></script>
+<script src="../../static/all_picture_page/js/ripple.js"></script>
+<script src="../../static/all_picture_page/js/owl.min.js"></script>
+<script src="../../static/all_picture_page/js/slick-slider.min.js"></script>
+<script src="../../static/all_picture_page/js/wow.min.js"></script>
+<!-- main js  -->
+<script src="../../static/all_picture_page/js/main.js"></script>
+
+</body>
+</html>
