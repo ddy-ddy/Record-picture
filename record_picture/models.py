@@ -7,8 +7,7 @@ from record_picture import db
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    username = db.Column(db.String(20))
+    login_name = db.Column(db.String(20))
     password_hash = db.Column(db.String(128))
 
     def set_password(self, password):
@@ -16,9 +15,3 @@ class User(db.Model, UserMixin):
 
     def validate_password(self, password):
         return check_password_hash(self.password_hash, password)
-
-
-class login_password(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(60))
-    password = db.Column(db.String(60))

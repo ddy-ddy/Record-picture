@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="../static/css/swiper_pictures_css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/swiper_pictures_css/dy_Swiper.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/sign_in_up_page_css/util.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/sign_in_up_page_css/login.css">
+{% endblock %}
+
+
+{% block aside %}
+    <div style="display:block;margin:auto auto 0;padding:.5rem">
+        <h3>Record Pictures</h3>
+        <!--设置头像-->
+        <figure class="image">
+            <img id="avatar" class="is-rounded" src="../static/image/show_page_image/avatar.JPG"/>
+        </figure>
+    </div>
+    <ul id="menu" class="menu-list">
+        <li data-menuanchor="展示"><a href="#show_picture">照片展示👀</a></li>
+        <li data-menuanchor="关于我们"><a href="#about">关于我们🤘</a></li>
+        <li data-menuanchor="登入"><a href={{ url_for("login") }}>登入👈</a></li>
+        <li data-menuanchor="注册"><a href={{ url_for("register") }}>注册👈🏻</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <div id="fullpage">
+            <!--===========================A.照片展示页面=============================================-->
+            <div class="section hero is-fullheight page" id="1">
+                <div class="is-flex is-flex-direction-column" style="height: auto;">
+                    <!--标题-->
+                    <div class="flex: 1;">
+                        <h1><span class="text-primary">Show Pictures</span></h1>
+                    </div>
+                    <!--照片-->
+                    <div class="is-flex is-flex-direction-column is-justify-content-center"
+                         style="flex: 1; overflow: auto; height: auto">
+                        <div class="content" style="overflow: auto; padding-top: 1.5rem;">
+                            <!--设置轮播图-->
+                            <section class="pc-banner">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide swiper-slide-center none-effect">
+                                            <a href="#"><img src="../static/image/show_page_image/1.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/2.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/3.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/4.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/5.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/6.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/7.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/8.JPG"/></a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#"><img src="../static/image/show_page_image/9.JPG"/></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--===========================B.关于我们页面=============================================-->
+            <div class="section hero is-fullheight page" id="2">
+                <div class="is-flex is-flex-direction-column" style="height: 100%;">
+                    <!--大写标题-->
+                    <div class="flex: 1;">
+                        <h1>Record <span class="text-primary">Pictures</span></h1>
+                    </div>
+                    <!--内容-->
+                    <div class="is-flex is-flex-direction-column" style="height: 100%;">
+                        <div class="is-flex is-flex-direction-column is-justify-content-top"
+                             style="flex: 1; overflow: auto;">
+                            <!--标题-->
+                            <div class="content" style="overflow: auto; padding-top: 1.5rem;">
+                                <h2>Hi！✋🏻 Record Picture是一个记录照片的网站，这是我们的介绍。</h2>
+                            </div>
+                            <!--折叠内容-->
+                            <ul id="accordionMenu">
+                                <li>
+                                    <span>>>>①这是一个什么网站？</span>
+                                    <div>zxdds</div>
+                                </li>
+                                <li>
+                                    <span>>>>②这是一个什么网站？</span>
+                                    <div>zxdds</div>
+                                </li>
+                                <li>
+                                    <span>>>>③这是一个什么网站？</span>
+                                    <div>zxdds</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="is-flex is-flex-direction-column is-justify-content-bottom">
+                        <div class="is-hidden-touch" style="margin-bottom: 0">
+                            <h3 style="font-size: 20px">联系我们👇</h3>
+                            <!--QQ-->
+                            <a href="static/image/qq.png" style="font-size: 1.75rem; color: #BD5D38;"
+                               data-toggle="tooltip"
+                               title="QQ" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
+                                    class="fa fa-circle fa-stack-2x"></i> <i
+                                    class="fab fa-qq fa-stack-1x fa-inverse"></i> </span>
+                            </a>
+                            <!--wechat-->
+                            <a href="static/image/wechat.png" style="font-size: 1.75rem; color: #BD5D38;"
+                               data-toggle="tooltip" title="WeiXin" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
+                                    class="fa fa-circle fa-stack-2x"></i> <i
+                                    class="fab fa-weixin fa-stack-1x fa-inverse"></i> </span> </a>
+                            <!--github-->
+                            <a href="https://github.com/ddy-ddy" style="font-size: 1.75rem; color: #BD5D38;"
+                               data-toggle="tooltip" title="GitHub" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
+                                    class="fa fa-circle fa-stack-2x"></i> <i
+                                    class="fab fa-github fa-stack-1x fa-inverse"></i> </span> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- 轮播脚本 -->
+    <script src="../static/js/fullpage_js/swiper.min.js"></script>
+    <!-- 设置轮播速度等 -->
+    <script>
+        window.onload = function () {
+            var swiper = new Swiper('.swiper-container', {
+                autoplay: 3000,	//是否自动滚动
+                speed: 500,		//滚动速速
+                autoplayDisableOnInteraction: false,
+                loop: true,
+                centeredSlides: true,
+                slidesPerView: 2,//当前选中
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                prevButton: '.swiper-button-prev',//左右切换
+                nextButton: '.swiper-button-next',//左右切换
+                onInit: function (swiper) {		 //当前选中 状态
+                    swiper.slides[2].className = "swiper-slide swiper-slide-active";//第一次打开不要动画
+                },
+                breakpoints: {
+                    668: {
+                        slidesPerView: 1,
+                    }
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        var fullpages = new fullpage('#fullpage', {
+            menu: '#menu',
+            setRecordHistory: false,
+            anchors: [
+                'show_picture',
+                'about'
+            ],
+            afterResize: function (width, height) {
+                if (width < 936) {
+                    fullpage_api.setAutoScrolling(false);
+                } else {
+                    fullpage_api.setAutoScrolling(true);
+                }
+            }
+        });
+        if (screen.width < 936) {
+            fullpages.setAutoScrolling(false);
+        }
+    </script>
+{% endblock %}

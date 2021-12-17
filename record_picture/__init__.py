@@ -21,6 +21,13 @@ def load_user(user_id):  # user_loader回调函数,从数据库中加载用户
     return user  # 返回用户对象
 
 
+@app.context_processor  # 模板上下处理函数
+def inject_user():  # 函数名可以随意修改
+    from record_picture.models import User
+    user = User.query.first()
+    return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
+
+
 login_manager.login_view = 'login'
 
 from record_picture.views import show_page_view
