@@ -18,8 +18,8 @@ def initdb(drop):
 @app.cli.command()
 def forge():
     """Generate fake data."""
+    db.drop_all()
     db.create_all()
-
     name = 'Yu Duan'
     infos = [
         {"email": "1179730251@qq.com", "password": 123456},
