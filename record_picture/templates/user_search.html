@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link href="../static/css/search_css/main.css" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block aside %}
+    <div style="display:block;margin:auto auto 0;padding:.5rem">
+        <!--设置用户名-->
+        <h3>{{ user_info.profile_name }}</h3>
+        <!--设置用户头像-->
+        <figure class="image">
+            <img id="avatar" class="is-rounded" src="{{ user_info.picture_link }}"/>
+        </figure>
+    </div>
+    <ul id="menu" class="menu-list">
+        <li data-menuanchor="地图"><a href="{{ url_for("map") }}">地图🇨🇳</a></li>
+        <li data-menuanchor="搜索照片🔍"><a href="{{ url_for("search_pictures") }}">搜索照片🔍</a></li>
+        <li data-menuanchor="所有照片"><a href="{{ url_for("show_all_pictures") }}">所有照片🎆</a></li>
+        <li data-menuanchor="上传照片"><a href="{{ url_for("upload") }}">上传照片↑</a></li>
+        <li data-menuanchor="个人信息"><a href="{{ url_for("user_index") }}">个人信息👨🏻</a></li>
+        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">登出账号</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div id="content">
+        <div id="fullpage">
+            <!--===========================根据地点搜索图片并展示=============================================-->
+            <div class="is-flex is-flex-direction-column" style="height: 100%;">
+                <!--搜索-->
+                <div class="s004" style=" background: url('../static/image/search.JPG') ;background-size: cover">
+                    <form method="post" action="{{ url_for("search_pictures") }}">
+                        <fieldset>
+                            <legend>搜索你的照片</legend>
+                            <div class="inner-form">
+                                <div class="input-field">
+                                    <input class="form-control" id="choices-text-preset-values" type="text"
+                                           placeholder="..." name="search_info"/>
+                                    <button class="btn-search">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34"
+                                             viewBox="0 0 24 24">
+                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="suggestion-wrap">
+                                </br>
+                                <span>①按照地点搜索: 1:南昌</span></br>
+                                <span>②按照时间搜索: 2:12月20日</span></br>
+                                <span>③安装照片标题搜索: 3:南昌之星</span></br>
+                                <span>④组合搜索: 1:南昌 2:12月20日 3:南昌之星</span></br>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/search_js/choices.js"></script>
+    <script>
+        var textPresetVal = new Choices('#choices-text-preset-values',
+            {
+                removeItemButton: true,
+            });
+    </script>
+{% endblock %}

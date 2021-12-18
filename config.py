@@ -17,6 +17,9 @@ class Config(object):
                               'sqlite:///' + os.path.join(basedir, 'data.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'user_uploads')  # 用户文件上传的位置
+
 
 # 开发环境配置信息
 class DevConfig(Config):

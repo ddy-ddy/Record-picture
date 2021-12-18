@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block head1 %}
+    <link rel="stylesheet" href="../static/css/show_pictures_css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/show_pictures_css/style.css"/>
+    <link rel="stylesheet" href="../static/css/show_pictures_css/responsive.css"/>
+{% endblock %}
+
+
+{% block aside %}
+    <div style="display:block;margin:auto auto 0;padding:.5rem">
+        <!--设置用户名-->
+        <h3>{{ user_info.profile_name }}</h3>
+        <!--设置用户头像-->
+        <figure class="image">
+            <img id="avatar" class="is-rounded" src="{{ user_info.picture_link }}"/>
+        </figure>
+    </div>
+    <ul id="menu" class="menu-list">
+        <li data-menuanchor="地图"><a href="{{ url_for("map") }}">地图🇨🇳</a></li>
+        <li data-menuanchor="搜索照片🔍"><a href="{{ url_for("search_pictures") }}">搜索照片🔍</a></li>
+        <li data-menuanchor="所有照片"><a href="{{ url_for("show_all_pictures") }}">所有照片🎆</a></li>
+        <li data-menuanchor="上传照片"><a href="{{ url_for("upload") }}">上传照片↑</a></li>
+        <li data-menuanchor="个人信息"><a href="{{ url_for("user_index") }}">个人信息👨🏻</a></li>
+        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">登出账号</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div id="content">
+        <div id="fullpage">
+            <!--===========================展示所有照片=============================================-->
+            <div class="section hero is-fullheight page" id="anchor_1" style="padding: 1rem 3rem;">    <!--修改padding-->
+                <div class="is-flex is-flex-direction-column" style="height: 100%;">
+                    <!--内容-->
+                    <div class="is-flex is-flex-direction-column is-justify-content-center"
+                         style="flex: 1; overflow: auto;">
+                        <!--所有照片-->
+                        <div class="featured-area pd-top-200">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <!--图片区域顶部-->
+                                    <div class="col-lg-12">
+                                        <div class="section-title">
+                                            <a class="show-a1" href="">{{ tag }}</a>
+                                        </div>
+                                    </div>
+                                    {% for pictures in pictures_info %}
+                                        <!--第一张浮窗图片-->
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="featured-item pd-bottom-90">
+                                                <div class="thumb">
+                                                    <img style="height: auto;max-width:200%"
+                                                         src={{ pictures.picture_url }} alt="img"/>
+                                                </div>
+                                                <div class="featured-item-meta">
+                                                    <h2><a href="single-blog-3.html">{{ pictures.title }}</a></h2>
+                                                    <ul>
+                                                        <li><a href="#">{{ pictures.place }}</a></li>
+                                                        <li>📷{{ pictures.device }}</li>
+                                                        <li>May 8,2017</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

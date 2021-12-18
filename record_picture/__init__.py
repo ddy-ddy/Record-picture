@@ -30,5 +30,4 @@ def inject_user():  # 函数名可以随意修改
 
 login_manager.login_view = 'login'
 
-from record_picture.views import show_page_view
-from record_picture import commands
+from record_picture import commands, view
