@@ -17,6 +17,8 @@ login_manager = LoginManager(app)  # 实例化login扩展类
 @login_manager.user_loader
 def load_user(user_id):  # user_loader回调函数,从数据库中加载用户
     from record_picture.models import User
+    if user_id == None:
+        return None
     user = User.query.get(int(user_id))  # 创建用户加载回调函数,接受用户ID作为参数
     return user  # 返回用户对象
 

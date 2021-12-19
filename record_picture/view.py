@@ -25,19 +25,17 @@ def index():
 def login():
     if request.method == 'POST':
         login_name, password = request.form.get("username"), request.form.get("password")
-
         user = db.session.query(User).filter(User.login_name == login_name).first()
-
         if user:
-            if check_password_hash(user.password_hash, password):
+            if check_password_hash(user.password_hash, password):  # 验证密钥
                 flash("登陆成功")  # 登陆成功
-                login_user(user)
+                login_user(user)  # 建立会话
                 return redirect(url_for("user_index"))
             else:
-                flash("1")  ##密码错误
+                flash("1")  # 密码错误
                 return redirect(url_for("login"))
         else:
-            flash("2")  ##没有该账号,请注册！
+            flash("2")  # 没有该账号,请注册！
             return redirect(url_for('register'))
 
     return render_template("login.html")
@@ -55,11 +53,13 @@ def register():
             return redirect(url_for("login"))
         else:
             flash("注册成功")  # 注册成功
+            print("注册成功")
             new_user = User(login_name=register_name)
             new_user.set_password(register_password)
             db.session.add(new_user)
             db.session.commit()
             flash("flag_welcome")
+            login_user(new_user)  # 建立会话
             return redirect(url_for("user_index"))
 
     return render_template("register.html")
@@ -110,13 +110,13 @@ def change_info():
     user_info = current_user
     # 更新信息
     name = request.form.get("name")
-    email = request.form.get("email")
+    country = request.form.get("country")
     iphone = request.form.get("iphone")
     # 修改数据库的信息
     if name != None and name:
         user_info.profile_name = name
-    if email != None and email:
-        user_info.email = email
+    if country != None and country:
+        user_info.country = country
     if iphone != None and iphone:
         user_info.iphone = iphone
     db.session.add(user_info)
@@ -133,21 +133,48 @@ def upload():
 
     if request.method == 'POST':
         # 获取图片信息
-        name, place, device = request.form.get("name"), request.form.get("place"), request.form.get("device")
+        name, place, device_name = request.form.get("name"), request.form.get("place"), request.form.get("device")
         # 更新图像
         if form.validate_on_submit():
             filename = photos.save(form.photo.data, name=f"{user_info.login_name}/user_images/{name}.")  # 保存图片
         else:
-            filename = None
-        file_url = photos.url(filename)
+            flash("图片未上传成功")
+            return redirect(url_for("upload"))  # 重新上传照片
+        file_url = str(photos.url(filename))
+        print(file_url)
+        # 获取图像的地址信息和时间信息
+        image_x_y, time, device = get_info_from_image(os.path.join(app.config['UPLOADED_PHOTOS_DEST'], filename))
+        device = str(device_name) + str(device)
+        if time == None:
+            time = "2020-12-10"  # 设置默认时间
+        if image_x_y == None:
+            # 根据城市名得到x,y
+            image_x_y = gaodde(place)
+
         # 将图像信息添加到数据库中
-        pic = Picture(id=len(Picture.query.all()) + 1, login_name=user_info.login_name, picture_url=file_url,
-                      title=name,
-                      device=device, place=place)
+        pic = Picture(login_name=user_info.login_name, picture_url=file_url,
+                      title=name, device=str(device), place=place, time=str(time), place_x_y=str(image_x_y))
         db.session.add(pic)
         db.session.commit()
         flash("上传成功")
+
     return render_template("user_upload.html", user_info=user_info, form=form)
+
+
+# 删除照片
+@app.route('/delete/<int:P_id>', methods=["POST"])
+@login_required
+def delete_picture(P_id):
+    info = db.session.query(Picture).filter(Picture.id == P_id).first()
+    try:
+        path = f"{os.getcwd()}/user_uploads/{info.login_name}/user_images/" + str(
+            info.picture_url.split("/")[-1])
+        os.remove(path)  # 删除文件
+    except:
+        pass
+    db.session.delete(info)
+    db.session.commit()
+    return redirect(url_for("show_all_pictures"))
 
 
 # 展示照片
@@ -165,13 +192,11 @@ def show_all_pictures():
 def search_pictures():
     user_info = current_user
     if request.method == 'POST':
-        search_info = request.form.get("search_info").split(",")  ##得到的内容为'南昌,北京'
+        search_info = request.form.get("search_info").split(",")  ##得到的内容为'#南昌,@北京'
 
         pictures_info = db.session.query(Picture).filter(Picture.title == search_info[0]).all()
-
         return render_template("user_pictures.html", user_info=user_info, pictures_info=pictures_info,
                                tag=search_info[0])
-
     return render_template("user_search.html", user_info=user_info)
 
 
@@ -180,4 +205,10 @@ def search_pictures():
 @login_required
 def map():
     user_info = current_user
-    return render_template("user_map.html", user_info=user_info)
+    url_info = db.session.query(Picture).filter(
+        Picture.login_name == user_info.login_name and Picture.picture_url != None).all()
+    place_info = []
+    for item in url_info:
+        temp_info = [eval(item.place_x_y), str(item.picture_url)]
+        place_info.append(temp_info)
+    return render_template("user_map.html", user_info=user_info, place_info=place_info)

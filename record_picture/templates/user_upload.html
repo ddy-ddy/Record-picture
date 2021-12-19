@@ -103,6 +103,8 @@
         {% for message in get_flashed_messages() %}
             {% if message=="上传成功" %}
                 window.alert("上传成功");
+            {% elif message=="图片未上传成功" %}
+                window.alert("图片未上传成功")
             {% endif %}
         {% endfor %}
     </script>

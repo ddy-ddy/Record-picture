@@ -5,8 +5,10 @@
     <link rel="stylesheet" type="text/css" href="../static/css/swiper_pictures_css/dy_Swiper.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/sign_in_up_page_css/util.css">
     <link rel="stylesheet" type="text/css" href="../static/css/sign_in_up_page_css/login.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/about_us.css">
+    <script src="../static/js/fullpage_js/jquery.min.js"></script>
+    <script src="../static/js/fullpage_js/bootstrap.min.js"></script>
 {% endblock %}
-
 
 {% block aside %}
     <div style="display:block;margin:auto auto 0;padding:.5rem">
@@ -54,21 +56,6 @@
                                         <div class="swiper-slide">
                                             <a href="#"><img src="../static/image/show_page_image/4.JPG"/></a>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <a href="#"><img src="../static/image/show_page_image/5.JPG"/></a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#"><img src="../static/image/show_page_image/6.JPG"/></a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#"><img src="../static/image/show_page_image/7.JPG"/></a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#"><img src="../static/image/show_page_image/8.JPG"/></a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#"><img src="../static/image/show_page_image/9.JPG"/></a>
-                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -81,7 +68,7 @@
             <div class="section hero is-fullheight page" id="2">
                 <div class="is-flex is-flex-direction-column" style="height: 100%;">
                     <!--大写标题-->
-                    <div class="flex: 1;">
+                    <div class="    flex: 1;">
                         <h1>Record <span class="text-primary">Pictures</span></h1>
                     </div>
                     <!--内容-->
@@ -93,40 +80,77 @@
                                 <h2>Hi！✋🏻 Record Picture是一个记录照片的网站，这是我们的介绍。</h2>
                             </div>
                             <!--折叠内容-->
-                            <ul id="accordionMenu">
-                                <li>
-                                    <span>>>>①这是一个什么网站？</span>
-                                    <div>zxdds</div>
-                                </li>
-                                <li>
-                                    <span>>>>②这是一个什么网站？</span>
-                                    <div>zxdds</div>
-                                </li>
-                                <li>
-                                    <span>>>>③这是一个什么网站？</span>
-                                    <div>zxdds</div>
-                                </li>
-                            </ul>
+                            <div class="wrap-about">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-6">
+                                            <div class="panel-group" id="accordion" role="tablist"
+                                                 aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingOne">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse"
+                                                               data-parent="#accordion" href="#collapseOne"
+                                                               aria-expanded="true" aria-controls="collapseOne">
+                                                                ①这是一个什么网站？
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseOne" class="panel-collapse collapse in"
+                                                         role="tabpanel" aria-labelledby="headingOne">
+                                                        <div class="panel-body">
+                                                            <p>Record Picture是一个可以记录照片，查看足迹的网站</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse"
+                                                               data-parent="#accordion" href="#collapseTwo"
+                                                               aria-expanded="false" aria-controls="collapseTwo">
+                                                                ②在这里你可以做些什么？
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseTwo" class="panel-collapse collapse"
+                                                         role="tabpanel" aria-labelledby="headingTwo">
+                                                        <div class="panel-body">
+                                                            <p>你可以定制属于你的照片地图，记录你的生活</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingThree">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse"
+                                                               data-parent="#accordion" href="#collapseThree"
+                                                               aria-expanded="false" aria-controls="collapseThree">
+                                                                ③为什么要选择我们？
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseThree" class="panel-collapse collapse"
+                                                         role="tabpanel" aria-labelledby="headingThree">
+                                                        <div class="panel-body">
+                                                            <p>这是一个承载回忆的地方</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="is-flex is-flex-direction-column is-justify-content-bottom">
                         <div class="is-hidden-touch" style="margin-bottom: 0">
                             <h3 style="font-size: 20px">联系我们👇</h3>
-                            <!--QQ-->
-                            <a href="static/image/qq.png" style="font-size: 1.75rem; color: #BD5D38;"
-                               data-toggle="tooltip"
-                               title="QQ" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
-                                    class="fa fa-circle fa-stack-2x"></i> <i
-                                    class="fab fa-qq fa-stack-1x fa-inverse"></i> </span>
-                            </a>
-                            <!--wechat-->
-                            <a href="static/image/wechat.png" style="font-size: 1.75rem; color: #BD5D38;"
-                               data-toggle="tooltip" title="WeiXin" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
-                                    class="fa fa-circle fa-stack-2x"></i> <i
-                                    class="fab fa-weixin fa-stack-1x fa-inverse"></i> </span> </a>
                             <!--github-->
-                            <a href="https://github.com/ddy-ddy" style="font-size: 1.75rem; color: #BD5D38;"
+                            <a href="https://github.com/ddy-ddy/Record-picture"
+                               style="font-size: 1.75rem; color: #BD5D38;"
                                data-toggle="tooltip" title="GitHub" data-offset="0,10" rel="me"> <span class="fa-stack"> <i
                                     class="fa fa-circle fa-stack-2x"></i> <i
                                     class="fab fa-github fa-stack-1x fa-inverse"></i> </span> </a>

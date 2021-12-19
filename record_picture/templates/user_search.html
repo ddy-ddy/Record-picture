@@ -20,7 +20,7 @@
         <li data-menuanchor="所有照片"><a href="{{ url_for("show_all_pictures") }}">所有照片🎆</a></li>
         <li data-menuanchor="上传照片"><a href="{{ url_for("upload") }}">上传照片↑</a></li>
         <li data-menuanchor="个人信息"><a href="{{ url_for("user_index") }}">个人信息👨🏻</a></li>
-        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">登出账号</a></li>
+        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">退出登陆</a></li>
     </ul>
 {% endblock %}
 
@@ -49,10 +49,10 @@
                             </div>
                             <div class="suggestion-wrap">
                                 </br>
-                                <span>①按照地点搜索: 1:南昌</span></br>
-                                <span>②按照时间搜索: 2:12月20日</span></br>
-                                <span>③安装照片标题搜索: 3:南昌之星</span></br>
-                                <span>④组合搜索: 1:南昌 2:12月20日 3:南昌之星</span></br>
+                                <span>①按照地点搜索(前缀为#): #南昌</span></br>
+                                <span>②按照时间搜索(前缀为@): @12月20日</span></br>
+                                <span>③按照照片标题搜索(前缀为￥): ￥南昌之星</span></br>
+                                <span>④组合搜索: #南昌 @12月20日 ￥南昌之星</span></br>
                             </div>
                         </fieldset>
                     </form>

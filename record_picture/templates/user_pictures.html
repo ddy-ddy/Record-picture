@@ -22,7 +22,7 @@
         <li data-menuanchor="所有照片"><a href="{{ url_for("show_all_pictures") }}">所有照片🎆</a></li>
         <li data-menuanchor="上传照片"><a href="{{ url_for("upload") }}">上传照片↑</a></li>
         <li data-menuanchor="个人信息"><a href="{{ url_for("user_index") }}">个人信息👨🏻</a></li>
-        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">登出账号</a></li>
+        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">退出登陆</a></li>
     </ul>
 {% endblock %}
 
@@ -51,15 +51,27 @@
                                         <div class="col-lg-3 col-md-6">
                                             <div class="featured-item pd-bottom-90">
                                                 <div class="thumb">
-                                                    <img style="height: auto;max-width:200%"
-                                                         src={{ pictures.picture_url }} alt="img"/>
+                                                    <a href="{{ pictures.picture_url }}">
+                                                        <img style="height: auto;max-width:200%"
+                                                             src={{ pictures.picture_url }} alt="img"/>
+                                                    </a>
                                                 </div>
                                                 <div class="featured-item-meta">
-                                                    <h2><a href="single-blog-3.html">{{ pictures.title }}</a></h2>
+                                                    <h2>
+                                                        <a href="">{{ pictures.title }}</a>
+                                                    </h2>
                                                     <ul>
-                                                        <li><a href="#">{{ pictures.place }}</a></li>
-                                                        <li>📷{{ pictures.device }}</li>
-                                                        <li>May 8,2017</li>
+                                                        <li>{{ pictures.place }}</li>
+                                                        <li>{{ pictures.device }}</li>
+                                                        <li>{{ pictures.time }}</li>
+                                                        <li>
+                                                            <form  method="post"
+                                                                  action="{{ url_for("delete_picture",P_id=pictures.id) }}">
+                                                                <input  type="submit" name="delete"
+                                                                       value="×"
+                                                                       onclick="return confirm('你确定要删除该照片吗?')">
+                                                            </form>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>

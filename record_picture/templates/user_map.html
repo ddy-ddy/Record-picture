@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <link href="../static/css/profile/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/profile/style.css" rel="stylesheet">
-{% endblock %}
 
 
 {% block aside %}
@@ -21,7 +17,7 @@
         <li data-menuanchor="所有照片"><a href="{{ url_for("show_all_pictures") }}">所有照片🎆</a></li>
         <li data-menuanchor="上传照片"><a href="{{ url_for("upload") }}">上传照片↑</a></li>
         <li data-menuanchor="个人信息"><a href="{{ url_for("user_index") }}">个人信息👨🏻</a></li>
-        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">登出账号</a></li>
+        <li data-menuanchor="登出账号"><a href="{{ url_for("logout") }}">退出登陆</a></li>
     </ul>
 {% endblock %}
 
@@ -29,58 +25,49 @@
 {% block content %}
     <div id="content">
         <div id="fullpage">
-            <!--===========================根据地点搜索图片并展示=============================================-->
             <div class="is-flex is-flex-direction-column" style="height: 100%;">
                 <!--+地图-->
                 <div id="container_map"></div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 
 {% block javascript %}
-<script type="text/javascript"
-        src="https://webapi.amap.com/maps?v=1.4.15&key=ae7201c9d81da4c1a221f2f2452fd7aa&plugin=AMap.MarkerClusterer"></script>
-<script type="text/javascript">
-    var cluster, markers = [];
-    var points = [{"lnglat": ["113.864691", "22.942327"]},
-        {"lnglat": ["113.370643", "22.938827"]},
-        {"lnglat": ["112.985037", "23.15046"]},
-        {"lnglat": ["110.361899", "20.026695"]},
-        {"lnglat": ["121.434529", "31.215641"]},
-        {"lnglat": ["120.682502", "28.011099"]},
-        {"lnglat": ["126.687123", "45.787618"]},
-        {"lnglat": ["103.970724", "30.397931"]}]
-    var map = new AMap.Map("container_map", {
-        mapStyle: 'amap://styles/fresh', //设置地图的显示样式
-        center: [105, 34],      //地图显示中心
-        zoom: 5     //地图显示大小
-    });
-    AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'], function () {
-        map.addControl(new AMap.ToolBar());
-        map.addControl(new AMap.Scale());
-        map.addControl(new AMap.MapType());
-    })  //添加组件
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.15&key=ae7201c9d81da4c1a221f2f2452fd7aa&plugin=AMap.MarkerClusterer"></script>
+    <script type="text/javascript">
+        var cluster, markers = [];
+        var map = new AMap.Map("container_map", {
+            mapStyle: 'amap://styles/fresh', //设置地图的显示样式
+            center: [105, 34],      //地图显示中心
+            zoom: 5     //地图显示大小
+        });
+        var points = JSON.parse('{{ place_info | tojson | safe }}')
+        AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'], function () {
+            map.addControl(new AMap.ToolBar());
+            map.addControl(new AMap.Scale());
+            map.addControl(new AMap.MapType());
+        })  //添加组件
+        for (var i = 0; i < points.length; i += 1) {
+            var url = points[i][1];
+            markers.push(new AMap.Marker({
+                position: points[i][0],
+                content: '<div id = "for-img"><a href="' + url + '"' + ' ><img src="' + url + '"' + ' alt=""></div>',
+                offset: new AMap.Pixel(-15, -15)
+            }))
+        }
 
-    for (var i = 0; i < 4; i += 1) {
-        markers.push(new AMap.Marker({
-            position: points[i]['lnglat'],
-            content: '<div id = "for-img"><a href="www.baidu.com"><img src="static/image/x1.JPG" alt=""></a></div>',
-            offset: new AMap.Pixel(-15, -15)
-        }))
-    }
+        var sts = [{
+            url: "https://a.amap.com/jsapi_demos/static/images/blue.png",
+            size: new AMap.Size(32, 32),
+            offset: new AMap.Pixel(-16, -16)
+        }];
 
-    var sts = [{
-        url: "https://a.amap.com/jsapi_demos/static/images/blue.png",
-        size: new AMap.Size(32, 32),
-        offset: new AMap.Pixel(-16, -16)
-    }]
-
-    cluster = new AMap.MarkerClusterer(map, markers, {
-        styles: sts,
-        gridSize: 80
-    });
-</script>
+        cluster = new AMap.MarkerClusterer(map, markers, {
+            styles: sts,
+            gridSize: 80
+        });
+    </script>
 {% endblock %}
