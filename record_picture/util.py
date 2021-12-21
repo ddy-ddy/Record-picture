@@ -78,3 +78,42 @@ def gaodde(address):
         return answer.split(",")
     except:
         return None
+
+
+# 搜索照片逻辑
+def search(info):
+    '''
+    info:"#南昌,@北京"
+    #为地点
+    @为时间:2021年12月11日
+    ￥为标题:标题
+    '''
+    title, place, time = "", "", ""
+    try:
+        info = info.split(",")
+        for item in info:
+            if item[0] == "￥":
+                title = item[1:]
+            elif item[0] == '#':
+                place = item[1:]
+            elif item[0] == '@':
+                time = item[1:]
+        if time:
+            time = time.replace("年", "-")
+            time = time.replace("月", "-")
+            time = time.replace("日", "")
+            x = time.split("-")
+            new_time = []
+            for item in x:
+                if len(item) == 1 and item != '-':
+                    new_time.append("0" + str(item))
+                else:
+                    new_time.append(item)
+            time = "-".join(new_time)
+    except:
+        pass
+    to_return = [title.strip(), place.strip(), time.strip()]
+    name = [item for item in to_return if item]
+    all_name = ",".join(name)
+    to_return.append(all_name)
+    return to_return

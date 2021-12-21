@@ -6,12 +6,13 @@
 '''
 路由
 '''
-from flask import render_template, request, url_for, redirect, flash, jsonify
+from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_user, login_required, logout_user, current_user
-from werkzeug.security import check_password_hash, generate_password_hash
-from record_picture import app, db
+from werkzeug.security import check_password_hash
+from record_picture import db
 from record_picture.models import User, Picture
 from .util import *
+from sqlalchemy.sql import or_
 import os
 
 
@@ -192,11 +193,15 @@ def show_all_pictures():
 def search_pictures():
     user_info = current_user
     if request.method == 'POST':
-        search_info = request.form.get("search_info").split(",")  ##得到的内容为'#南昌,@北京'
+        search_info = request.form.get("search_info")  ##得到的内容为'#南昌,@北京'
 
-        pictures_info = db.session.query(Picture).filter(Picture.title == search_info[0]).all()
+        title, place, time, all_name = search(search_info)
+        pictures_info = db.session.query(Picture).filter(
+            or_(Picture.title == title, Picture.place == place, Picture.time == time)).all()
+
+        # pictures_info = db.session.query(Picture).filter(Picture.title == search_info[0]).all()
         return render_template("user_pictures.html", user_info=user_info, pictures_info=pictures_info,
-                               tag=search_info[0])
+                               tag=all_name)
     return render_template("user_search.html", user_info=user_info)
 
 
@@ -209,6 +214,12 @@ def map():
         Picture.login_name == user_info.login_name and Picture.picture_url != None).all()
     place_info = []
     for item in url_info:
-        temp_info = [eval(item.place_x_y), str(item.picture_url)]
-        place_info.append(temp_info)
+        try:
+            if eval(item.place_x_y) == None or len(eval(item.place_x_y)) != 2:
+                continue
+            temp_info = [eval(item.place_x_y), str(item.picture_url)]
+            place_info.append(temp_info)
+            print(temp_info)
+        except:
+            continue
     return render_template("user_map.html", user_info=user_info, place_info=place_info)
