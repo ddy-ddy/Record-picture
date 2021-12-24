@@ -50,6 +50,7 @@
             map.addControl(new AMap.Scale());
             map.addControl(new AMap.MapType());
         })  //添加组件
+        //添加照片
         for (var i = 0; i < points.length; i += 1) {
             var url = points[i][1];
             markers.push(new AMap.Marker({

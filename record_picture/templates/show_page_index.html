@@ -192,6 +192,7 @@
             });
         }
     </script>
+    {#  fullpage上下滑动效果  #}
     <script type="text/javascript">
         var fullpages = new fullpage('#fullpage', {
             menu: '#menu',
@@ -200,16 +201,6 @@
                 'show_picture',
                 'about'
             ],
-            afterResize: function (width, height) {
-                if (width < 936) {
-                    fullpage_api.setAutoScrolling(false);
-                } else {
-                    fullpage_api.setAutoScrolling(true);
-                }
-            }
         });
-        if (screen.width < 936) {
-            fullpages.setAutoScrolling(false);
-        }
     </script>
 {% endblock %}

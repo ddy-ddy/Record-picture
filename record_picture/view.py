@@ -219,7 +219,6 @@ def map():
                 continue
             temp_info = [eval(item.place_x_y), str(item.picture_url)]
             place_info.append(temp_info)
-            print(temp_info)
         except:
             continue
     return render_template("user_map.html", user_info=user_info, place_info=place_info)

@@ -2,12 +2,34 @@
 - 记录你的照片
 - 网站: www.dycaoqian.com
 
-项目总框架:
+
+
+#### 运行步骤:
+
+Step1：安装依赖库
+
+```shell
+>>>pip install -r requirements.txt
+```
+
+Step2：运行app.py文件
+
+- 数据库为data.db文件
+- 项目主内容在record_picture文件夹中
+- 项目文档在document中，使用markdown的格式，导出为html格式
+- 项目总文档和ppt在该目录下
+
+
+
+#### 项目总框架:
+
 ````python
 .
 ├── README.md																#项目说明文件
 ├── app.py																	#项目启动入口
 ├── config.py																#项目配置文件
+├── 项目总文档.doc
+├── 项目ppt.pptx
 ├── data.db #项目数据库,使用SQlite
 ├── document #存放项目说明文档及技术难题
 ├── record_picture													#项目
@@ -33,5 +55,6 @@
 │   │   └── user_upload.html
 │   ├── util.py															#[py][存放功能函数]
 │   └── view.py															#[py][存放视图]
-└── user_uploads
+└── user_uploads#用户上传的文件夹
 ````
+
