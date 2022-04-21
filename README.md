@@ -1,6 +1,14 @@
 #### Record-Pictures
-- 记录你的照片
+- Record Pictures是一个个人照片记录网站
 
+- 该网站可以上传用户的照片并记录拍摄地点，拍摄设备等信息。
+
+- 随着用户上传的照片不断增加，用户将拥有一个完整的照片库，网站将按照地点将其分类，并展示在地图上。
+
+#### 用到的技术：
+
+- 前端：html+css+JavaScript（目前没有使用类似vue，react等web框架，课设的时候技术太菜(ಥ﹏ಥ)）
+- 后端：python flask
 
 #### 运行步骤:
 
@@ -14,6 +22,12 @@ Step2：运行app.py文件
 ```shell
 python app.py
 ```
+Step3：登陆
+```shell
+登陆账号：duanyu1@qq.com 
+密码：123456
+```
+
 - 数据库为data.db文件
 - 项目主内容在record_picture文件夹中
 - 项目文档在document中，使用markdown的格式，导出为html格式
