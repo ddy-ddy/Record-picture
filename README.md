@@ -1,7 +1,5 @@
 #### Record-Pictures
 - 记录你的照片
-- 网站: www.dycaoqian.com
-
 
 
 #### 运行步骤:
@@ -9,11 +7,13 @@
 Step1：安装依赖库
 
 ```shell
->>>pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Step2：运行app.py文件
-
+```shell
+python app.py
+```
 - 数据库为data.db文件
 - 项目主内容在record_picture文件夹中
 - 项目文档在document中，使用markdown的格式，导出为html格式
